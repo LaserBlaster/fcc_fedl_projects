@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        #buttons {
+            height: 400px;
+            width: 320px;
+
+        }
+        #calcBody {
+            width: 320px;
+            height: 480px;
+            border: 5px solid black;
+            padding: 0px;
+            margin: 0px;
+        }
+        #clear {
+            width: 160px;
+            height: 80px;
+            border: 1px solid black;
+            background-color: red; 
+            color: white;
+        }
+        .numbers {
+            background-color: 	rgb(77, 77, 77);
+            color: white;
+            border: 1px solid black;
+            width: 80px;
+            height: 80px;
+            margin: 0px;
+        }
+        #zero {
+            background-color: 	rgb(77, 77, 77);
+            color: white;
+            border: 1px solid black;
+            width: 160px;
+            height: 80px;
+        }
+        #equals{
+            background-color: 	rgb(77, 77, 77);
+            color: black;
+            border: 1px solid black;
+            width: 80px;
+            height: 160px;
+            background-color: blue;
+            margin: 0;
+            padding: 0;
+
+        }
+        .operators {
+            background-color: rgb(100, 100, 100);
+            color: white;
+            border: 1px solid black;
+            width: 80px;
+            height: 80px;
+        }
+        #display {
+            background-color: black;
+            color: white;
+            width: 100%;
+            text-align: right;
+            height: 60px;
+            margin: 0px;
+            padding: 0px;
+        }
+        #bottom-left {
+            width: 240px;
+            height: 180px;
+        }
+        #bottom {
+            display: block;
+            width: 320px;
+            height: 180px;
+        }
+    </style>
+  </head>
+  <body>
+
+    <div id="calcBody"></div>
+
+    <script type="text/babel">
+      class Calculator extends React.Component {
+
+        constructor(props) {
+
+            super(props);
+
+            this.state = {
+
+                currentChar: '0',
+                totalLine: '',
+                charArray: [4, 4, 3],
+                test: 2
+
+            };
+
+            // Change code below this line
+        
+            this.mouseOverButton = this.mouseOverButton.bind(this);
+            this.mouseLeavesButton = this.mouseLeavesButton.bind(this);
+            this.handleChange = this.handleChange.bind(this);
+            this.clearInfo = this.clearInfo.bind(this);
+            //this.handleClick - this.handleClick.bind(this);
+            // Change code above this line
+
+        }
+
+        // Change code below this line
+
+        handleChange (event) {
+            
+            this.setState((state, props) => ({
+                currentChar: event.target.value,
+                totalLine: state.totalLine + event.target.value,
+                charArray: state.charArray.concat(event.target.value),
+                test: state.test * event.target.value
+            }))
+
+            /*
+            this.setState({
+                currentChar = event.target.value
+
+            })
+            */
+        }
+        mouseOverButton (event) {
+            //Changes borderColor to indicate mouse it over this buttom
+            event.target.style.borderColor = "white"
+        }
+        mouseLeavesButton (event) {
+            //Changes borderColor back to original state
+            event.target.style.borderColor = "black"
+        }
+        // Change code above this line
+        clearInfo (event) {
+            this.setState((state, props) => ({
+                currentChar: 0,
+                totalLine: '',
+                charArray: [],
+                test: 2
+            }))
+        }
+        render() {
+
+            return (
+
+                <div>
+
+                    { /* Change code below this line */}
+                    <div id="display">
+                        <p>totalLine{this.state.totalLine}</p>
+                        <h6>currentCHar:{this.state.currentChar}</h6>
+                    </div>
+                    <div id="buttons">
+                        {/* first line */}
+                        <button id="clear" onClick={this.clearInfo} onMouseEnter={this.mouseOverButton} onMouseLeave={this.mouseLeavesButton}>AC</button>
+                        <button id="divide" class="operators" value="/" onClick={this.handleChange} onMouseEnter={this.mouseOverButton} onMouseLeave={this.mouseLeavesButton}>/</button>
+                        <button id="multiply" class="operators" alue="*" onClick={this.handleChange} onMouseEnter={this.mouseOverButton} onMouseLeave={this.mouseLeavesButton}>x</button>
+                        { /*second line */}
+                        <button id="seven" class="numbers" value="7" onClick={this.handleChange} onMouseEnter={this.mouseOverButton} onMouseLeave={this.mouseLeavesButton}>7</button>
+                        <button id="eight" class="numbers" value="8" onClick={this.handleChange} onMouseEnter={this.mouseOverButton} onMouseLeave={this.mouseLeavesButton}>8</button>
+                        <button id="nine" class="numbers" value="9" onClick={this.handleChange} onMouseEnter={this.mouseOverButton} onMouseLeave={this.mouseLeavesButton}>9</button>
+                        <button id="subtract" class="operators" value="-" onClick={this.handleChange} onMouseEnter={this.mouseOverButton} onMouseLeave={this.mouseLeavesButton}>-</button>
+                        
+                        <button id="four" class="numbers" value="4" onClick={this.handleChange} onMouseEnter={this.mouseOverButton} onMouseLeave={this.mouseLeavesButton}>4</button>
+                        <button id="five" class="numbers" value="5" onClick={this.handleChange} onMouseEnter={this.mouseOverButton} onMouseLeave={this.mouseLeavesButton}>5</button>
+                        <button id="six" class="numbers" value="6" onClick={this.handleChange} onMouseEnter={this.mouseOverButton} onMouseLeave={this.mouseLeavesButton}>6</button>
+                        <button id="add" class="operators" value="+" onClick={this.handleChange} onMouseEnter={this.mouseOverButton} onMouseLeave={this.mouseLeavesButton}>+</button>
+                        <div id="bottom">    
+                            <div id="bottom-left">
+                                <button id="one" class="numbers" value="1" onClick={this.handleChange} onMouseEnter={this.mouseOverButton} onMouseLeave={this.mouseLeavesButton}>1</button>
+                                <button id="two" class="numbers" value="2" onClick={this.handleChange} onMouseEnter={this.mouseOverButton} onMouseLeave={this.mouseLeavesButton}>2</button>
+                                <button id="three" class="numbers" value="3" onClick={this.handleChange} onMouseEnter={this.mouseOverButton} onMouseLeave={this.mouseLeavesButton}>3</button>
+                                <button id="zero" class="numbers" value="0" onClick={this.handleChange} onMouseEnter={this.mouseOverButton} onMouseLeave={this.mouseLeavesButton}>0</button>
+                                <button id="decimal" class="numbers" value="." onClick={this.handleChange} onMouseEnter={this.mouseOverButton} onMouseLeave={this.mouseLeavesButton}>.</button>
+                            </div>
+                            
+                            <button id="equals"  onMouseEnter={this.mouseOverButton} onMouseLeave={this.mouseLeavesButton} >=</button>     
+                        </div>
+                    </div>
+       
+                    { /* Change code above this line */}
+
+                    <h4>Controlled Input:</h4>
+
+                    <p>currentCHar:{this.state.currentChar}</p>
+
+                    <p>charArray{this.state.charArray[3]}</p>
+                    <p>test:{this.state.test}</p>
+
+                </div>
+
+            );
+
+        }
+
+      }
+      
+      ReactDOM.render(<Calculator />, document.getElementById('calcBody'))
+    </script>
+
+  </body>
+</html>

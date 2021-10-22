@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <!--SUPER UGLY but passed tests fix later-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Long Boys' Studios</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Including Bootstrap JS (with its jQuery dependency) so that dynamic components work -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <style>
+      #header {
+        position: fixed;
+        background-color: red;
+      }
+        .container {  
+            display: flex;  
+            position: fixed;
+            flex: wrap;
+        }       
+        @media all and (max-width: 400px) {  
+            .container > li {  
+                flex-basis: 100%;  
+            }  
+            .search {  
+                order: 1;  
+            }  
+        }
+
+    </style>
+    </head>
+    <body>
+        <!--Navigation Bar-->
+        <header id="header">
+            <img src="#" id="header-img">
+            <nav id="nav-bar">
+                <ul class="container">  
+                    <a href="#header" class="nav-link"><li>Home</li></a>
+                    <a href="#video" class="nav-link"><li>Video</li></a>
+                    <a href="#form" class="nav-link"><li>Form</li></a>
+                    <a href="#contacts" class="nav-link"><li>Contacts</li></a>
+
+                  </ul>  
+            </nav>
+        </header>     
+        <!--Video-->
+        <iframe width="420" height="315"
+        src="https://www.youtube.com/embed/tgbNymZ7vqY" id="video">
+        </iframe>   
+        <!--Form-->
+        <form id="form" action="https://www.freecodecamp.com/email-submit" method="post">
+            <input name="email" id="email" type="email" placeholder="Enter your email address" required=""><br><br>
+            <input id="submit" type="submit" value="Get Started" class="btn">
+        </form>
+        <p id="contacts">Contacts us at ...</>
+    </body>
+</html>
